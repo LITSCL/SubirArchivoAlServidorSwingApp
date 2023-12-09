@@ -71,20 +71,20 @@ public class StartFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser archivo = new JFileChooser();
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de Imagen (*.PNG,*.JPG,*.JPEG)", "png", "jpg", "jpeg");
-				archivo.addChoosableFileFilter(filtro); //Se le a�ade el filtro al JFileChooser (Para que al usuario se le sea mas f�cil buscar una imagen).
+				archivo.addChoosableFileFilter(filtro); //Se le añade el filtro al JFileChooser (Para que al usuario se le sea mas fácil buscar una imagen).
 				archivo.setDialogTitle("Busque la imagen");
-				int ventana = archivo.showOpenDialog(null); //Esta instrucci�n habre la ventana que permite seleccionar el archivo.
-				if (ventana == JFileChooser.APPROVE_OPTION) { //Aca se esta consultando si el usuario le dio click al boton "Abrir" (En el caso de que lo haya hecho se ejecuta el c�digo).
-					File fi = archivo.getSelectedFile(); //Esta instrucci�n contiene la ruta del archivo.
-					textArchivoSeleccionado.setText(String.valueOf(fi)); //Se modifica el texto con la ruta seleccionada (Tambi�n se puede utilizar el toString para refindir el dato).
+				int ventana = archivo.showOpenDialog(null); //Esta instrucción habre la ventana que permite seleccionar el archivo.
+				if (ventana == JFileChooser.APPROVE_OPTION) { //Aca se esta consultando si el usuario le dio click al boton "Abrir" (En el caso de que lo haya hecho se ejecuta el código).
+					File fi = archivo.getSelectedFile(); //Esta instrucción contiene la ruta del archivo.
+					textArchivoSeleccionado.setText(String.valueOf(fi)); //Se modifica el texto con la ruta seleccionada (También se puede utilizar el toString para refindir el dato).
 					
 					//Aca es donde comienza el proceso de copiar un archivo al servidor.
-					Path rutaArchivoOrigen = Paths.get(String.valueOf(fi)); //Aqu� se obtiene la ruta en donde se encuentra el archivo original (El m�todo "get" recibe por par�metro la ruta absoluta del archivo).
-					Path rutaArchivoDestino = Paths.get("src", "cl", "inacap", "subirarchivoalservidorswingapp", "file"); //Aqu� se obtiene la ruta del paquete donde se va a guardar el archivo de destino.
+					Path rutaArchivoOrigen = Paths.get(String.valueOf(fi)); //Aquí se obtiene la ruta en donde se encuentra el archivo original (El método "get" recibe por parámetro la ruta absoluta del archivo).
+					Path rutaArchivoDestino = Paths.get("src", "cl", "inacap", "subirarchivoalservidorswingapp", "file"); //Aquí se obtiene la ruta del paquete donde se va a guardar el archivo de destino.
 					
 					try {
-						Path copiar = Files.copy(rutaArchivoOrigen, rutaArchivoDestino.resolve("copia_" + rutaArchivoOrigen.getFileName())); //NOTA: Tambi�n se puede pasar como segundo par�metro, "StandardCopyOption.REPLACE_EXISTING", lo cual reemplaza el archivo cuando ya existe en la ruta de destino.
-						System.out.println("EXITO: El archivo se copi� correctamente a la ruta de destino");
+						Path copiar = Files.copy(rutaArchivoOrigen, rutaArchivoDestino.resolve("copia_" + rutaArchivoOrigen.getFileName())); //NOTA: También se puede pasar como segundo parámetro, "StandardCopyOption.REPLACE_EXISTING", lo cual reemplaza el archivo cuando ya existe en la ruta de destino.
+						System.out.println("EXITO: El archivo se copió correctamente a la ruta de destino");
 					} catch (IOException e) {
 						System.out.println("ERROR: El archivo ya existe en la ruta de destino");
 					}
